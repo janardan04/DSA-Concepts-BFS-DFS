@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Concepts</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">DSA Concepts</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Visualize
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="generateBFS.html">BFS (Breadth First Search)</a></li>
+                            <li><a class="dropdown-item" href="generateDFS.html">DFS (Depth First Search)</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Include Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylish Heading -->
+    <div class="container text-center my-5">
+        <h1 class="display-4 text-primary font-weight-bold" style="font-family: 'Lobster', cursive;">
+            Visualizing DFS and BFS
+        </h1>
+        <p class="lead text-muted" style="font-family: 'Roboto', sans-serif;">
+            Explore the power of Depth First Search (DFS) and Breadth First Search (BFS) through visualization.
+        </p>
+    </div>
+
+
+    <!-- Cards Section -->
+    <div class="container my-5">
+        <!-- Card 1 -->
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="img1.avif" class="img-fluid rounded-start" alt="Graph Image">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">What is a Graph in DSA?</h5>
+                        <p class="card-text">A graph is a data structure that consists of a set of nodes (vertices) and
+                            edges connecting them. It can represent relationships or networks like social networks,
+                            roads, and web pages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="graphtraversal.gif" class="img-fluid rounded-start" alt="Graph Traversal"
+                        style="width: auto; height: auto; object-fit: cover;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Graph Traversal</h5>
+                        <p class="card-text">Graph traversal involves visiting all vertices or nodes in a graph. The two
+                            main methods are Depth First Search (DFS) and Breadth First Search (BFS).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="tree-dfs-vs-bfs.gif" class="img-fluid rounded-start" alt="DFS and BFS Image">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">DFS and BFS Traversal</h5>
+                        <p class="card-text">
+                            <strong>DFS:</strong> Uses a stack to explore as far as possible before backtracking.
+                        </p>
+                        <button class="btn btn-generate" onclick="location.href='generateDFS.html';">Generate
+                            DFS</button>
+                        <p class="card-text mt-3">
+                            <strong>BFS:</strong> Uses a queue to explore all neighbors before moving to the next level.
+                        </p>
+                        <button class="btn btn-generate" onclick="location.href='generateBFS.html';">Generate
+                            BFS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer >
+        <div class="container">
+            <div class="row">
+                <!-- About Us Section -->
+                <div class="col-md-6 mb-4">
+                    <h3>About Us</h3>
+                    <p>Our website offers interactive visualizations of DSA concepts to enhance learning. Dive in to explore
+                        algorithms and data structures visually!</p>
+                </div>
+                <!-- Quick Links Section -->
+                <div class="col-md-6 mb-4">
+                    <h3>Quick Links</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none link-hover">Home</a></li>
+                        <li><a href="about.html" class="text-light text-decoration-none link-hover">Theory</a></li>
+                        <!-- Dropdown for Visualize -->
+                        <li class="dropdown">
+                            <a 
+                                href="#" 
+                                class="dropdown-toggle text-lighttext-decoration-none link-hover" 
+                                id="visualizeDropdown" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false"
+                            >
+                                Visualize
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="visualizeDropdown">
+                                <li><a class="dropdown-item link-hover" href="generateDFS.html">Generate DFS</a></li>
+                                <li><a class="dropdown-item link-hover" href="generateBFS.html">Generate BFS</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html" class="text-light text-decoration-none link-hover">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Social Icons -->
+            <div class="text-center mt-4">
+                <a href="#" class="text-dark mx-2 link-hover"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-dark mx-2 link-hover"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-dark mx-2 link-hover"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/janardan-borase-25a546232/" class="text-dark mx-2 link-hover"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <!-- Footer Text -->
+            <p class="text-center mt-2">© 2024 DSA Concepts. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- CSS for hover effect -->
+    <style>
+        .link-hover:hover {
+            color: #007bff !important; /* Bootstrap primary color */
+            text-decoration: underline !important;
+        }
+    </style>
+    
+    
+    
+    
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
