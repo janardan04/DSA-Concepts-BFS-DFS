@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Visualization</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        #controls {
+            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        svg {
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            width: 100%;
+            height: auto;
+            user-select: none;
+        }
+
+        circle {
+            cursor: grab;
+        }
+
+        footer {
+
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        #explanationText {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .visited-node {
+            fill: #4CAF50 !important;
+        }
+
+        .current-node {
+            fill: #2196F3 !important;
+        }
+
+        .queued-node {
+            fill: #FFC107 !important;
+        }
+
+        .adjacency-list {
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">DSA Concepts</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Visualize
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="generateBFS.html">BFS(Breadth First Search)</a></li>
+                            <li><a class="dropdown-item" href="generateDFS.html">DFS(Depth First Search)</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container text-center my-5">
+        <h1 class="display-4 text-primary font-weight-bold" style="font-family: 'Lobster', cursive;">
+            Visualizing BFS(Breadth-First-Search)
+        </h1>
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-12">
+                <div id="controls">
+                    <label for="nodeCount">Number of Nodes:</label>
+                    <input type="number" id="nodeCount" class="form-control mb-2" min="1"
+                        placeholder="Enter number of nodes">
+                    <button class="btn btn-primary w-100 mb-2" onclick="generateGraph()">Generate Graph</button>
+
+                    <label for="sourceNode">Source Node:</label>
+                    <input type="number" id="sourceNode" class="form-control mb-2" min="1" placeholder="Source node">
+
+                    <label for="targetNode">Target Node:</label>
+                    <input type="number" id="targetNode" class="form-control mb-2" min="1" placeholder="Target node">
+                    <button class="btn btn-success w-100 mb-2" onclick="addEdge()">Add Edge</button>
+
+                    <label for="startNode">Start BFS from Node:</label>
+                    <input type="number" id="startNode" class="form-control mb-2" min="1"
+                        placeholder="Start node for BFS">
+                    <button class="btn btn-info w-100" onclick="runBFS()">Run BFS</button>
+
+                    <h5 class="mt-3">Edges:</h5>
+                    <div id="edgeList" class="p-2 border rounded">No edges yet.</div>
+
+                    <h5 class="mt-3">Adjacency List:</h5>
+                    <div id="adjacencyList" class="adjacency-list">No nodes yet.</div>
+
+                    <h5 class="mt-3">Queue:</h5>
+                    <div id="queueList" class="p-2 border rounded">Empty</div>
+
+                    <h5 class="mt-3">Explanation:</h5>
+                    <textarea id="explanationText" class="form-control" readonly></textarea>
+
+                    <h5 class="mt-3">Final Traversal:</h5>
+                    <input type="text" id="finalTraversal" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6 col-12">
+                <svg id="graph" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet"></svg>
+            </div>
+        </div>
+    </div>
+
+    <footer >
+        <div class="container">
+            <div class="row">
+                <!-- About Us Section -->
+                <div class="col-md-6 mb-4">
+                    <h3>About Us</h3>
+                    <p>Our website offers interactive visualizations of DSA concepts to enhance learning. Dive in to explore
+                        algorithms and data structures visually!</p>
+                </div>
+                <!-- Quick Links Section -->
+                <div class="col-md-6 mb-4">
+                    <h3>Quick Links</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none link-hover">Home</a></li>
+                        <li><a href="about.html" class="text-light text-decoration-none link-hover">Theory</a></li>
+                        <!-- Dropdown for Visualize -->
+                        <li class="dropdown">
+                            <a 
+                                href="#" 
+                                class="dropdown-toggle text-lighttext-decoration-none link-hover" 
+                                id="visualizeDropdown" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false"
+                            >
+                                Visualize
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="visualizeDropdown">
+                                <li><a class="dropdown-item link-hover" href="generateDFS.html">Generate DFS</a></li>
+                                <li><a class="dropdown-item link-hover" href="generateBFS.html">Generate BFS</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html" class="text-light text-decoration-none link-hover">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Social Icons -->
+            <div class="text-center mt-4">
+                <a href="#" class="text-dark mx-2 link-hover"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-dark mx-2 link-hover"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-dark mx-2 link-hover"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-dark mx-2 link-hover"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <!-- Footer Text -->
+            <p class="text-center mt-2">© 2024 DSA Concepts. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- CSS for hover effect -->
+    <style>
+        .link-hover:hover {
+            color: #007bff !important; /* Bootstrap primary color */
+            text-decoration: underline !important;
+        }
+    </style>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    <script src="bfs.js"></script>
+
+</body>
+
+</html>
